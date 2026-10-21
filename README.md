@@ -3,6 +3,7 @@
 Portal estático de apoyo a talleres presenciales de IA aplicada a logística y comercio exterior. Construido con Hugo; el contenido se edita en Markdown y no necesita backend, cuentas, API ni dependencias de terceros en tiempo de consulta.
 
 ## LOG
+2026/Oct/21: r1.02 Update deploy.yml
 2026/Oct/21: r1.01 Created local cursos website.
 2026/Oct/20: r1.00 Initialized repo
 
@@ -40,4 +41,4 @@ Se usó el nombre FronterIA y una paleta inspirada en el sitio corporativo (fond
 
 ## Publicación
 
-Lee [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md) antes de crear el repositorio y activar GitHub Pages. Esta entrega no publica cambios ni configura DNS.
+Lee [docs/specs/DESPLIEGUE.md](docs/DESPLIEGUE.md) antes de crear el repositorio y activar GitHub Pages. Esta entrega no publica cambios ni configura DNS.
