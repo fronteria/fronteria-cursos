@@ -1,0 +1,34 @@
+baseURL = 'https://cursos.fronteria.co/'
+locale = 'es-CO'
+title = 'FronterIA Cursos'
+copyright = 'FronterIA Software'
+enableRobotsTXT = true
+disableKinds = ['taxonomy', 'term', 'RSS']
+defaultContentLanguage = 'es'
+
+[languages.es]
+  locale = 'es-CO'
+  label = 'Español'
+
+[params]
+  description = 'Capacitaciones presenciales de inteligencia artificial para equipos de logística y comercio exterior.'
+  corporateURL = 'https://fronteria.co/'
+  email = 'contacto@fronteria.co'
+  whatsappURL = 'https://wa.me/573154490157'
+  whatsappLabel = '+57 315 449 0157'
+
+[[menus.main]]
+  name = 'Inicio'
+  pageRef = '/'
+  weight = 10
+[[menus.main]]
+  name = 'Cursos'
+  pageRef = '/cursos'
+  weight = 20
+[[menus.main]]
+  name = 'Sobre FronterIA'
+  url = 'https://fronteria.co/'
+  weight = 30
+
+[markup.goldmark.renderer]
+  unsafe = false

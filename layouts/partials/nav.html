@@ -1,0 +1,4 @@
+<ul class="nav-list">
+  {{ range site.Menus.main }}<li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>{{ end }}
+  <li><a class="nav-cta" href="mailto:{{ site.Params.email }}?subject=Capacitaci%C3%B3n%20en%20IA">Solicitar capacitación</a></li>
+</ul>

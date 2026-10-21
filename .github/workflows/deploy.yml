@@ -1,0 +1,60 @@
+name: Deploy Hugo to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.168.0'
+          extended: true
+      - name: Build
+        run: hugo --minify --baseURL "https://cursos.fronteria.co/"
+      - name: Check public files
+        run: |
+          if find public -type f | grep -E 'CLAVE_instructor|~lock|\.zip$'; then
+            echo 'Se detectaron archivos privados o temporales en public/'
+            exit 1
+          fi
+          test "$(find public/recursos/ia-logistica-comercio-internacional/fundamentos/ejercicios -type f | wc -l)" -eq 7
+          test -f public/recursos/ia-logistica-comercio-internacional/fundamentos/cuaderno/cuaderno-participante.pdf
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+  deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,10 @@
+{{ define "main" }}
+<section class="page-hero"><div class="wrap"><p class="eyebrow">{{ .Section | title }}</p><h1>{{ .Title }}</h1>{{ with .Description }}<p class="page-lede">{{ . }}</p>{{ end }}</div></section>
+<div class="wrap page-content">{{ .Content }}
+  {{ if .Params.exerciseIndex }}
+    <div class="index-links"><a href="{{ "cursos/ia-logistica-comercio-internacional/fundamentos/preparacion/" | relURL }}">← Preparación previa</a><a href="{{ "cursos/ia-logistica-comercio-internacional/fundamentos/recursos/" | relURL }}">Cuaderno y archivos ↓</a></div>
+    {{ $groups := slice "Correos y primeros pasos" "Correos" "Documentos" "Excel y PDF" "Verificación" "Práctica final" }}
+    {{ range $group := $groups }}{{ $items := where $.Pages "Params.group" $group }}{{ if $items }}<section class="exercise-group"><h2>{{ $group }}</h2><div class="exercise-cards">{{ range $items.ByWeight }}<a class="exercise-card" href="{{ .RelPermalink }}"><span>{{ .Params.exercise }}</span><strong>{{ .Title }}</strong><small>{{ .Params.kicker }}</small><b aria-hidden="true">↗</b></a>{{ end }}</div></section>{{ end }}{{ end }}
+  {{ else if .Pages }}<div class="card-grid">{{ range .Pages.ByWeight }}<article class="course-card"><span class="status-pill">{{ .Params.status | default "Material disponible" }}</span><h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>{{ with .Description }}<p>{{ . }}</p>{{ end }}<a class="text-link" href="{{ .RelPermalink }}">Ver temario y contenido <span aria-hidden="true">→</span></a></article>{{ end }}</div>{{ end }}
+</div>
+{{ end }}
